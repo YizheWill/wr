@@ -18,7 +18,9 @@
 
 ### 2. set up webpacker: `rails webpacker:install:react`
 
-### 3. go to browser: `localhost:3000`
+### 3. start server: `rails s`
+
+### 4. go to browser: `localhost:3000`
 
 ## Functions:
 
