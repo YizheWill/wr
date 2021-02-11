@@ -3,7 +3,7 @@ export default (oldState = {}, action) => {
   Object.freeze(oldState);
   switch (action.type) {
     case RECEIVE_AUTHOR:
-      return action.payload;
+      return action.payload.author;
     default:
       return oldState;
   }

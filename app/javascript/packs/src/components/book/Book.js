@@ -75,18 +75,23 @@ const useStyles = makeStyles((theme) => ({
     color: 'red',
   },
 }));
-const BooksMenu = ({ books, book, editBook }) => {
+const BooksMenu = ({ bks, book, editBook, setSearchBar }) => {
+  console.log('bks', bks);
   const classes = useStyles();
-  console.log(books);
+  console.log(bks);
 
-  const renderBooks = Object.values(books).filter(
-    (book) => book.aliasBooks.length === 0 && !book.referenceBook
-  );
+  const renderBooks = bks.filter((book) => !book.referenceBook);
   return (
     <div style={{ marginTop: '1rem' }}>
       {renderBooks.map((bk) => (
         <div key={bk.id} className={classes.menu}>
-          <Modal book={book} editBook={editBook} refId={bk.id} />
+          <Modal
+            book={book}
+            editBook={editBook}
+            refId={bk.id}
+            setSearchBar={setSearchBar}
+            title={bk.title}
+          />
           {bk.title}, <span className={classes.isbn}>ISBN: {bk.iSBN}</span>
         </div>
       ))}
@@ -95,15 +100,32 @@ const BooksMenu = ({ books, book, editBook }) => {
   // return <div>{books.map((book) => book.title)}</div>;
 };
 
-function SearchBar({ searchBook, sb, fetchBooks, books, editBook, book }) {
+function SearchBar({
+  sb,
+  fetchBooks,
+  books,
+  editBook,
+  book,
+  setSearchBar = { setSearchBar },
+}) {
   useEffect(() => {
     fetchBooks();
   }, []);
   console.log('sb', sb);
+  if (!book.aliasBooks.length && !book.referenceBook) {
+    sb = 'block';
+  }
+  const [search, setSearch] = useState('');
   const classes = useStyles();
+  const searchBooks = (keyword) => {
+    return Object.values(books).filter((book) =>
+      book.title.toLowerCase().includes(keyword)
+    );
+  };
+  const [res, setRes] = useState(Object.values(books));
   return (
     <div style={{ display: sb }}>
-      <h1>SEARCH FOR THE ORIGINAL TITLE</h1>
+      <h1>SEARCH FOR REFERENCE BOOK</h1>
       <div className={classes.search}>
         <div className={classes.searchIcon}>
           <Search />
@@ -114,10 +136,20 @@ function SearchBar({ searchBook, sb, fetchBooks, books, editBook, book }) {
             root: classes.inputRoot,
             input: classes.inputInput,
           }}
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value);
+            setRes(searchBooks(e.target.value));
+          }}
           inputProps={{ 'aria-label': 'search' }}
         />
       </div>
-      <BooksMenu books={books} book={book} editBook={editBook} />
+      <BooksMenu
+        bks={res}
+        book={book}
+        editBook={editBook}
+        setSearchBar={setSearchBar}
+      />
     </div>
   );
 }
@@ -151,6 +183,7 @@ function Book({ book, fetchBook, searchBook, fetchBooks, books, editBook }) {
                 display: 'flex',
                 width: '100%',
                 justifyContent: 'space-between',
+                alignItems: 'center',
               }}
             >
               <h2
@@ -163,13 +196,35 @@ function Book({ book, fetchBook, searchBook, fetchBooks, books, editBook }) {
               >
                 Reference Book: {book.referenceBook?.title}
               </h2>
-              <Button
-                onClick={() => {
-                  setSearchBar('block');
-                }}
-              >
-                Edit
-              </Button>
+              <div>
+                <Button
+                  onClick={() => {
+                    setSearchBar('block');
+                  }}
+                >
+                  Edit REference
+                </Button>
+                {book.referenceBook ? (
+                  <Button
+                    onClick={() => {
+                      const { id, title } = book;
+                      const bookData = {
+                        id,
+                        title,
+                        reference_book_id: null,
+                      };
+
+                      editBook(bookData);
+                      window.location.reload(false);
+                    }}
+                    color='secondary'
+                  >
+                    Delete Reference
+                  </Button>
+                ) : (
+                  ''
+                )}
+              </div>
             </div>
           ) : (
             ''
@@ -206,6 +261,7 @@ function Book({ book, fetchBook, searchBook, fetchBooks, books, editBook }) {
               books={books}
               book={book}
               editBook={editBook}
+              setSearchBar={setSearchBar}
             />
           ) : (
             ''
@@ -221,7 +277,6 @@ function Book({ book, fetchBook, searchBook, fetchBooks, books, editBook }) {
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
-          opacity: 0.6,
         }}
       >
         <div style={{ width: 3, height: 100, backgroundColor: '#888' }}></div>

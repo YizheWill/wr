@@ -9,7 +9,7 @@ export const receiveAuthors = (authors) => ({
 });
 
 export const receiveAuthor = (author) => ({
-  type: RECEIVE_AUTHORS,
+  type: RECEIVE_AUTHOR,
   payload: author,
 });
 
@@ -20,7 +20,12 @@ export const removeAuthor = (authorId) => ({
 
 export const actionFetchAuthors = () => (dispatch) =>
   Api.apiFetchAuthors().then((res) => dispatch(receiveAuthors(res)));
-export const actionFetchAuthor = (authorId) => (dispatch) =>
-  Api.apiFetchAuthor(authorId).then((res) => dispatch(receiveAuthor(res)));
+export const actionFetchAuthor = (authorId) => (dispatch) => {
+  console.log('here', authorId);
+
+  return Api.apiFetchAuthor(authorId).then((res) =>
+    dispatch(receiveAuthor(res))
+  );
+};
 export const actionDeleteAuthor = (authorId) => (dispatch) =>
   Api.apiDeleteAuthor(authorId).then(() => dispatch(removeAuthor(authorId)));

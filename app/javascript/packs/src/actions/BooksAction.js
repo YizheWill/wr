@@ -29,7 +29,6 @@ export const actionDeleteBook = (bookId) => (dispatch) =>
   Api.apiDeleteBook(bookId).then(() => dispatch(removeBook(bookId)));
 export const actionEditBook = (book) => (dispatch) => {
   console.log('book', book);
-  debugger;
   return Api.apiEditBook(book).then(() => dispatch(receiveBook));
 };
 

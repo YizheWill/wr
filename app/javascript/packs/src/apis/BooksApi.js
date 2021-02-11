@@ -11,7 +11,6 @@ export const apiEditBook = (book) => {
   const url = '/api/books/' + book.id;
   const formData = serialize({ book });
   console.log('formData', formData);
-  debugger;
   const fetchRequestOptions = {
     method: 'PATCH',
     header: { 'Content-Type': 'application/json' },

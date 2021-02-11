@@ -18,9 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Md({ book, editBook, refId }) {
-  const history = useHistory();
-  const title = book.title;
+export default function Md({ book, editBook, refId, setSearchBar, title }) {
   const [checked, setChecked] = useState(false);
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -37,7 +35,9 @@ export default function Md({ book, editBook, refId }) {
     const bookData = { ...book };
     bookData.reference_book_id = refId;
     editBook(bookData);
-    // history.push('/');
+    handleClose();
+    setSearchBar('none');
+    window.location.reload(false);
   };
 
   return (
@@ -68,21 +68,56 @@ export default function Md({ book, editBook, refId }) {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id='transition-modal-title'>
-              Now You are changing the current book's reference book to be{' '}
-              {title}
-            </h2>
+            <div id='transition-modal-title' style={{ fontSize: 20 }}>
+              Now You are changing the{' '}
+              <span
+                style={{
+                  color: 'red',
+                  fontStyle: 'italic',
+                  marginRight: '1rem',
+                }}
+              >
+                {book.title}'s
+              </span>
+              reference book to be {': '}
+              <div
+                style={{
+                  margin: '2rem auto',
+                  width: '100%',
+                  textAlign: 'center',
+                  color: 'red',
+                  fontStyle: 'italic',
+                }}
+              >
+                {title}
+              </div>
+            </div>
 
-            <p id='transition-modal-description'>Are You Sure?</p>
-            <Button onClick={handleSubmit}>yes</Button>
-            <Button
-              onClick={() => {
-                setChecked(false);
-                handleClose();
+            <div
+              style={{
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'space-between',
               }}
             >
-              cancel
-            </Button>
+              <Button
+                onClick={handleSubmit}
+                variant='contained'
+                style={{ backgroundColor: '#444', color: 'gold' }}
+              >
+                confirm
+              </Button>
+              <Button
+                onClick={() => {
+                  setChecked(false);
+                  handleClose();
+                }}
+                variant='contained'
+                color='secondary'
+              >
+                cancel
+              </Button>
+            </div>
           </div>
         </Fade>
       </Modal>

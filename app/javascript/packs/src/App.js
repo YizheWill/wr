@@ -4,6 +4,7 @@ import Home from './components/home/Home';
 import './App.css';
 import Book from './components/book/Book.js';
 import Navbar from './components/home/Navbar';
+import Author from './components/Author';
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
           </Route>
           <Route exact path='/books/:bookId'>
             <Book />
+          </Route>
+          <Route exact path='/authors/:authorId'>
+            <Author />
           </Route>
         </Switch>
       </Router>
