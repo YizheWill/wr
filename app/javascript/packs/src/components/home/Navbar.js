@@ -87,7 +87,7 @@ export default function SearchAppBar() {
           >
             Whoo's Reading
           </Typography>
-          {location.pathname === '/' ? (
+          {/* {location.pathname === '/' ? (
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
@@ -103,7 +103,7 @@ export default function SearchAppBar() {
             </div>
           ) : (
             ''
-          )}
+          )} */}
         </Toolbar>
       </AppBar>
     </div>

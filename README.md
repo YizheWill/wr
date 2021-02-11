@@ -1,24 +1,47 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+---
 
-Things you may want to cover:
+## Engines
 
-* Ruby version
+### 1. ruby 2.7.1
 
-* System dependencies
+### 2. rails 6.0.3.5
 
-* Configuration
+### 3. react 17.0.1
 
-* Database creation
+---
 
-* Database initialization
+## Instruction
 
-* How to run the test suite
+### 1. set up database: `rails db:setup`
 
-* Services (job queues, cache servers, search engines, etc.)
+### 2. set up webpacker: `rails webpacker:install:react`
 
-* Deployment instructions
+### 3. go to browser: `localhost:3000`
 
-* ...
+## Functions:
+
+### 1. show all books
+
+![all books]()
+
+### 2. show all authors
+
+![all authors]()
+
+### 3. show a single book
+
+![single book]()
+
+### 4. show book's authors
+
+![book author]()
+
+### 5. edit book's reference
+
+![book reference]()
+
+### 6. delete book's reference
+
+![remove book reference]()
