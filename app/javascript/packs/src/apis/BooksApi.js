@@ -9,7 +9,8 @@ export const apiFetchBook = (bookId) =>
 export const apiEditBook = (book) => {
   console.log('book', book);
   const url = '/api/books/' + book.id;
-  const formData = serialize(book);
+  const formData = serialize({ book });
+  console.log('formData', formData);
   debugger;
   const fetchRequestOptions = {
     method: 'PATCH',

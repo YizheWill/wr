@@ -37,7 +37,7 @@ export default function Md({ book, editBook, refId }) {
     const bookData = { ...book };
     bookData.reference_book_id = refId;
     editBook(bookData);
-    history.push('/');
+    // history.push('/');
   };
 
   return (
