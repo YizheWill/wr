@@ -9,7 +9,7 @@ export const receiveBooks = (books) => ({
 });
 
 export const receiveBook = (book) => ({
-  type: RECEIVE_BOOKS,
+  type: RECEIVE_BOOK,
   payload: book,
 });
 
@@ -21,6 +21,17 @@ export const removeBook = (bookId) => ({
 export const actionFetchBooks = () => (dispatch) =>
   Api.apiFetchBooks().then((res) => dispatch(receiveBooks(res)));
 export const actionFetchBook = (bookId) => (dispatch) =>
-  Api.apiFetchBook(bookId).then((res) => dispatch(receiveBook(res)));
+  Api.apiFetchBook(bookId).then((res) => {
+    console.log('res', res);
+    return dispatch(receiveBook(res));
+  });
 export const actionDeleteBook = (bookId) => (dispatch) =>
   Api.apiDeleteBook(bookId).then(() => dispatch(removeBook(bookId)));
+export const actionEditBook = (book) => (dispatch) => {
+  console.log('book', book);
+  debugger;
+  return Api.apiEditBook(book).then(() => dispatch(receiveBook));
+};
+
+export const actionSearchBook = (keyword) => (dispatch) =>
+  Api.apiSearchBook(keyword).then((res) => dispatch(receiveBooks(res)));

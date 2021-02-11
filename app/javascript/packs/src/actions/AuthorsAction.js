@@ -1,25 +1,26 @@
-export const RECEIVE_BOOKS = 'RECEIVE_BOOKS';
-export const RECEIVE_BOOK = 'RECEIVE_BOOK';
-export const REMOVE_BOOK = 'REMOVE_BOOK';
+import * as Api from '../apis/AuthorsApi';
+export const RECEIVE_AUTHORS = 'RECEIVE_AUTHORS';
+export const RECEIVE_AUTHOR = 'RECEIVE_AUTHOR';
+export const REMOVE_AUTHOR = 'REMOVE_AUTHOR';
 
-export const receiveBooks = (books) => ({
-  type: RECEIVE_BOOKS,
-  payload: books,
+export const receiveAuthors = (authors) => ({
+  type: RECEIVE_AUTHORS,
+  payload: authors,
 });
 
-export const receiveBook = (book) => ({
-  type: RECEIVE_BOOKS,
-  payload: book,
+export const receiveAuthor = (author) => ({
+  type: RECEIVE_AUTHORS,
+  payload: author,
 });
 
-export const removeBook = (bookId) => ({
-  type: REMOVE_BOOK,
-  payload: bookId,
+export const removeAuthor = (authorId) => ({
+  type: REMOVE_AUTHOR,
+  payload: authorId,
 });
 
-export const actionFetchBooks = () => (dispatch) =>
-  Api.apiFetchBooks().then((res) => dispatch(receiveBooks(res)));
-export const actionFetchBook = (bookId) => (dispatch) =>
-  Api.apiFetchBook(bookId).then((res) => dispatch(receiveBook(res)));
-export const actionDeleteBook = (bookId) => (dispatch) =>
-  Api.apiDeleteBook(bookId).then(() => dispatch(removeBook(bookId)));
+export const actionFetchAuthors = () => (dispatch) =>
+  Api.apiFetchAuthors().then((res) => dispatch(receiveAuthors(res)));
+export const actionFetchAuthor = (authorId) => (dispatch) =>
+  Api.apiFetchAuthor(authorId).then((res) => dispatch(receiveAuthor(res)));
+export const actionDeleteAuthor = (authorId) => (dispatch) =>
+  Api.apiDeleteAuthor(authorId).then(() => dispatch(removeAuthor(authorId)));

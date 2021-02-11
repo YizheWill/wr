@@ -2,11 +2,15 @@ import { serialize } from 'object-to-formdata';
 export const apiFetchBooks = () =>
   fetch('/api/books').then((res) => res.json());
 export const apiFetchBook = (bookId) =>
-  fetch('/api/books/' + bookId).then((res) => res.json());
+  fetch('/api/books/' + bookId).then((res) => {
+    return res.json();
+  });
 
 export const apiEditBook = (book) => {
+  console.log('book', book);
   const url = '/api/books/' + book.id;
-  const formData = serialize({ book: book });
+  const formData = serialize(book);
+  debugger;
   const fetchRequestOptions = {
     method: 'PATCH',
     header: { 'Content-Type': 'application/json' },

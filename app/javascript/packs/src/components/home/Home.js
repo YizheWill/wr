@@ -7,8 +7,7 @@ import ToggleButtons from './ToggleButton';
 function Home() {
   const [page, setPage] = useState('books');
   return (
-    <div>
-      <Navbar />
+    <div style={{ marginTop: 100 }}>
       <ToggleButtons setPage={setPage} />
       {page === 'books' ? <Books /> : <Authors />}
     </div>

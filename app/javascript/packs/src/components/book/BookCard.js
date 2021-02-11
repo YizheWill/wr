@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: 300,
@@ -13,14 +14,21 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     margin: 30,
     borderRadius: 5,
+    cursor: 'pointer',
   },
 }));
 
 function BookCard({ book }) {
+  const history = useHistory();
   const classes = useStyles();
   return (
-    <div className={classes.root}>
-      <h2>{book.title}</h2>
+    <div
+      className={classes.root}
+      onClick={() => history.push('/books/' + book.id)}
+    >
+      <h2>
+        {book.title.length > 20 ? book.title.slice(0, 20) + '...' : book.title}
+      </h2>
       <h2>{book.authors.length === 1 ? 'Author' : 'Authors'}</h2>
       {book.authors.map((author) => (
         <div key={author.id}>{author.name}</div>

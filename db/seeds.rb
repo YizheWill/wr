@@ -10,19 +10,20 @@
   Author.create({ name: Faker::Book.author })
 end
 
-40.times do
-  book = Book.create({ title: Faker::Book.title })
+15.times do
+  book = Book.create({ title: Faker::Book.title, ISBN: Faker::Barcode.ean_with_composite_symbology(8), summary: Faker::Books::Lovecraft.paragraphs(number: 2).join(' '), quote: Faker::Quote.matz, genre: Faker::Book.genre })
   (1..10).to_a.sample((1..5).to_a.sample).each do |el|
     InterBookAuthor.create({ book_id: book.id, author_id: el })
     p "book id: #{book.id}, author id: #{el}, title is #{book.title}"
   end
 end
 
-20.times do
-  id = (1..40).to_a.sample
+50.times do
+  id = (1..15).to_a.sample
   book = Book.find(id)
   authors = book.authors
+  new_book = Book.create({ reference_book_id: id, title: book.title + ' ' + Faker::Space.galaxy, summary: book.summary, quote: book.quote, genre: book.genre, ISBN: book.ISBN })
   authors.each do |author|
-    Book.create({reference_book_id: id, title: book.title + })
+    InterBookAuthor.create({ book_id: new_book.id, author_id: author.id })
   end
 end

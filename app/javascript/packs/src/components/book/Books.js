@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { actionFetchBooks } from '../../actions/BooksAction';
+import { actionFetchBooks, actionSearchBook } from '../../actions/BooksAction';
 import BookCard from './BookCard';
 import { makeStyles } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({

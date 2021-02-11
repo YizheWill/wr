@@ -5,10 +5,15 @@ import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
+import { useHistory, useLocation } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -61,33 +66,44 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SearchAppBar() {
+  const location = useLocation();
+  const history = useHistory();
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <AppBar position='static'>
-        <Toolbar style={{ backgroundColor: '#444', color: 'white' }}>
+        <Toolbar style={{ backgroundColor: '#444', color: 'gold' }}>
           <Typography
             className={classes.title}
             variant='h6'
             noWrap
-            style={{ fontFamily: "'Oswald', sans-serif", fontWeight: 800 }}
+            style={{
+              fontFamily: "'Oswald', sans-serif",
+              fontWeight: 800,
+              cursor: 'pointer',
+            }}
+            onClick={() => history.push('/')}
           >
             Whoo's Reading
           </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
+          {location.pathname === '/' ? (
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+              <InputBase
+                placeholder='Search…'
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+                inputProps={{ 'aria-label': 'search' }}
+              />
             </div>
-            <InputBase
-              placeholder='Search…'
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
+          ) : (
+            ''
+          )}
         </Toolbar>
       </AppBar>
     </div>
