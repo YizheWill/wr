@@ -16,11 +16,13 @@
 
 ### 1. set up database: `rails db:setup`
 
-### 2. set up webpacker: `rails webpacker:install:react`
+### 2. bundle install
 
-### 3. start server: `rails s`
+### 3. set up webpacker: `rails webpacker:install:react`
 
-### 4. go to browser: `localhost:3000`
+### 4. start server: `rails s`
+
+### 5. go to browser: `localhost:3000`
 
 ## Functions:
 
