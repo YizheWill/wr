@@ -53,6 +53,14 @@
 ![remove book reference](https://res.cloudinary.com/willwang/image/upload/v1613067907/Screen_Shot_2021-02-11_at_10.16.46_AM_bcubta.png)
 
 ---
+
+## test
+
+### 1. test author model: `rails test test/model/author_test.rb`
+
+### 2. test book model: `rails test test/model/book_test.rb`
+
+---
 ## Front End Redux State Structure:
 
 `{
