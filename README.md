@@ -43,12 +43,31 @@
 ![book ref](https://res.cloudinary.com/willwang/image/upload/v1613067907/Screen_Shot_2021-02-11_at_10.16.26_AM_k7hqta.png)
 ![book alias](https://res.cloudinary.com/willwang/image/upload/v1613067907/Screen_Shot_2021-02-11_at_10.16.19_AM_grzjgd.png)
 
-### 5. edit book's reference
+### 6. edit book's reference
 
 ![book reference](https://res.cloudinary.com/willwang/image/upload/v1613067908/Screen_Shot_2021-02-11_at_10.16.40_AM_aphtnn.png)
 ![remove book reference](https://res.cloudinary.com/willwang/image/upload/v1613067907/Screen_Shot_2021-02-11_at_10.16.46_AM_bcubta.png)
 
 ---
+## Front End Redux State Structure:
+
+`{
+  entities: {
+    books: {
+      1: {id: 1, title: 'title', authors: []
+    },
+    book: {
+      title: 'title', authors: []
+    },
+    authors: {
+      1: {id: 1, name: 'Will', books: []}
+    },
+    author: {
+      id: 1, name: 'Will', books: []
+  }
+}
+`
+
 
 ## Future Features
 
