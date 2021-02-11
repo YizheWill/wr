@@ -32,7 +32,7 @@
 
 ### 3. show a single book
 
-![single book](https://res.cloudinary.com/willwang/image/upload/v1613067908/Screen_Shot_2021-02-11_at_10.16.05_AM_baldlv.png)
+
 
 ### 4. show book's authors
 
@@ -46,7 +46,11 @@
 ### 5. edit book's reference
 
 ![book reference](https://res.cloudinary.com/willwang/image/upload/v1613067908/Screen_Shot_2021-02-11_at_10.16.40_AM_aphtnn.png)
-
-### 6. delete book's reference
-
 ![remove book reference](https://res.cloudinary.com/willwang/image/upload/v1613067907/Screen_Shot_2021-02-11_at_10.16.46_AM_bcubta.png)
+
+---
+
+## Future Features
+
+### 1. may add a search function no the navbar
+
